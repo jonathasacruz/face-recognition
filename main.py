@@ -1,5 +1,5 @@
-# Instalar a biblioteca OpenCV direto do site não funcionou, instalei opence-python dentro do pycharm;
-# Para o OpenCV funcionar, instalar o numpy com o comando pip install numpy
+# Instalar a biblioteca OpenCV direto do site não funcionou, instalei opencv-python dentro do pycharm;
+# Para instalar o DLIB é necessário instalar o Visual Studio C++
 import sys
 import cv2
 import face_recognition
