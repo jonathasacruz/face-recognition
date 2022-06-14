@@ -1,29 +1,28 @@
 # Instalar a biblioteca OpenCV direto do site não funcionou, instalei opencv-python dentro do pycharm;
 # É necessário instalar o Visual Studio C++ (IDE), CMake, Wheels, DLIB e opencv-python
-
 import sys
 import cv2
 import face_recognition
 import pickle
 
-name=input("enter name") #Nome e ID para o rosto que está sendo treinado
-ref_id=input("enter id")
+name = input("enter name")
+ref_id = input("enter id")
 
 try:
-    f=open("ref_name.pkl","rb") #Abre(cria) o arquivo ref_name no modo leitura/binário
+    f=open("ref_name.pkl","rb")
 
-    ref_dictt=pickle.load(f) #Pickle: serialização do arquivo "f" e armazenamento num dicionário de referências
+    ref_dictt=pickle.load(f)
     f.close()
 except:
     ref_dictt={}
-ref_dictt[ref_id]=name #Armazena o nome com o id atribuído
+ref_dictt[ref_id]=name
 
 
-f=open("ref_name.pkl","wb") #Abre o arquivo ref_name no modo escrita/binário
-pickle.dump(ref_dictt,f) #Escreve o dicionário atualizado no arquivo "f"
+f=open("ref_name.pkl","wb")
+pickle.dump(ref_dictt,f)
 f.close()
 
-try: #Cria o arquivo e dicionário de referência de imagens incorporadas
+try:
     f=open("ref_embed.pkl","rb")
 
     embed_dictt=pickle.load(f)
@@ -31,12 +30,12 @@ try: #Cria o arquivo e dicionário de referência de imagens incorporadas
 except:
     embed_dictt={}
 
-for i in range(5): #Captura das imagens
+for i in range(5):
     key = cv2.waitKey(1)
-    webcam = cv2.VideoCapture(0) #captura o fluxo da webcam do comuptador, pode ser alterado para receber arquivos
+    webcam = cv2.VideoCapture(0)
     while True:
 
-        check, frame = webcam.read() #Captura do fluxo da webcam
+        check, frame = webcam.read()
 
         cv2.imshow("Capturing", frame)
         small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
@@ -44,7 +43,7 @@ for i in range(5): #Captura das imagens
 
         key = cv2.waitKey(1)
 
-        if key == ord('s'): #Cria o dicionário de rostos reconhecidos pela biblioteca face_recognition
+        if key == ord('s'):
             face_locations = face_recognition.face_locations(rgb_small_frame)
             if face_locations != []:
                 face_encoding = face_recognition.face_encodings(frame)[0]
@@ -64,6 +63,7 @@ for i in range(5): #Captura das imagens
             cv2.destroyAllWindows()
             break
 
+
 f=open("ref_embed.pkl","wb")
-pickle.dump(embed_dictt,f) #grava as alterações
+pickle.dump(embed_dictt,f)
 f.close()
