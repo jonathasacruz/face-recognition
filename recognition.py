@@ -65,7 +65,7 @@ while True:
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, ref_dictt[name], (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-    font = cv2.FONT_HERSHEY_DUPLEX
+        font = cv2.FONT_HERSHEY_DUPLEX
 
     cv2.imshow('Video', frame)
 
