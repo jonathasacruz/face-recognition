@@ -1,5 +1,14 @@
-# Instalar a biblioteca OpenCV direto do site não funcionou, instalei opencv-python dentro do pycharm;
-# É necessário instalar o Visual Studio C++ (IDE), CMake, Wheels, DLIB e opencv-python
+#RECONHECIMENTO FACIAL DE PESSOAS DESAPARECIDAS
+#TURMA: CCO7NA
+#PROFESSOR: JOÃO PAULO SANTOS
+#ALUNOS:
+# Ewerthon Santana de Almeida - 201907971
+# Jônathas Alves da Cruz - 201902375
+# Leandro Henrique Amorim - 201702295
+# Micael Sousa Barbosa - 201907965
+# Renan Monteiro Batista - 201903050
+
+
 import sys
 import cv2
 import face_recognition
@@ -9,28 +18,26 @@ name = input("enter name")
 ref_id = input("enter id")
 
 try:
-    f=open("ref_name.pkl","rb")
-
-    ref_dictt=pickle.load(f)
+    f=open("ref_name.pkl","rb") #Lê/Cria o arquivo de nomes
+    ref_dictt=pickle.load(f) #Carrega o arquivo de nomes num dicionário
     f.close()
 except:
     ref_dictt={}
-ref_dictt[ref_id]=name
+ref_dictt[ref_id]=name #Adiciona ao dicionário de nomes, o nome registrado anteriormente
 
 
 f=open("ref_name.pkl","wb")
-pickle.dump(ref_dictt,f)
+pickle.dump(ref_dictt,f) #Grava no arquivo de nomes o nome adicionado, de forma serializada.
 f.close()
 
 try:
-    f=open("ref_embed.pkl","rb")
-
-    embed_dictt=pickle.load(f)
+    f=open("ref_embed.pkl","rb") #Lê/Cria o arquivo de faces codificadas
+    embed_dictt=pickle.load(f) #Carrega o arquivo de codificações de faces num dicionário
     f.close()
 except:
     embed_dictt={}
 
-for i in range(5):
+for i in range(5): #Faz a captura das imagens utilizando reconhecimento facial
     key = cv2.waitKey(1)
     webcam = cv2.VideoCapture(0)
     while True:

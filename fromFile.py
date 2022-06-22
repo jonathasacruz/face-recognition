@@ -1,5 +1,4 @@
-# Instalar a biblioteca OpenCV direto do site não funcionou, instalei opencv-python dentro do pycharm;
-# É necessário instalar o Visual Studio C++ (IDE), CMake, Wheels, DLIB e opencv-python
+
 import sys
 import cv2
 import face_recognition
@@ -27,7 +26,6 @@ f.close()
 
 try:
     f=open("ref_embed.pkl","rb")
-
     embed_dictt=pickle.load(f)
     f.close()
 except:
